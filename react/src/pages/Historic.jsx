@@ -63,7 +63,7 @@ export const Historic = () => {
                       <img className="w-8 h-8 rounded-full" src="https://www.w3schools.com/howto/img_avatar.png" />
                   </div>
                   <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                      <p className="text-sm font-medium text-gray-900 truncate dark:text-black">
                         {usuario.user.name}
                       </p>
                       <p className="text-sm text-gray-500 truncate dark:text-gray-400">
@@ -73,12 +73,12 @@ export const Historic = () => {
                 </div>
               </td>
               <td className="py-3 px-6 text-center whitespace-nowrap">
-                  <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                  <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-black">
                       { (usuario.type == 'D' ? usuario.deposit : usuario.transfer)}
                   </div>
               </td>
               <td className="py-3 px-6 text-center whitespace-nowrap">
-                  <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                  <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-black">
                       { format(new Date(usuario.created_at), 'dd/MM/yyyy HH:mm:ss')}
                   </div>
               </td>
