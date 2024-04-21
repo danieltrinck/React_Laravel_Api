@@ -1,3 +1,6 @@
+## Baixando os arquivos
+    -  git clone https://github.com/danieltrinck/React_Laravel_Api.git .
+    
 ## Carregando os containers
     - docker-compose build
     - docker-compose up -d
