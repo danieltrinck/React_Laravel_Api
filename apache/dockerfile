@@ -1,0 +1,11 @@
+# apache/Dockerfile
+FROM httpd:2.4.51
+
+COPY www.apache.conf /usr/local/apache2/conf/www.apache.conf
+
+RUN echo "Include /usr/local/apache2/conf/www.apache.conf" \
+    >> /usr/local/apache2/conf/httpd.conf
+
+RUN echo "LoadModule rewrite_module modules/mod_rewrite.so" \
+    >> /usr/local/apache2/conf/httpd.conf
+EXPOSE 80

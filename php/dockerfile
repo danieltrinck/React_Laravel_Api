@@ -1,0 +1,21 @@
+# php/Dockerfile
+FROM php:8-fpm
+
+RUN apt-get update
+RUN apt-get install -y openssl zip unzip git curl
+RUN apt-get install -y libzip-dev libonig-dev libicu-dev
+RUN apt-get install -y autoconf pkg-config libssl-dev
+
+RUN docker-php-ext-install bcmath mbstring intl opcache
+
+RUN docker-php-ext-install pdo pdo_mysql mysqli
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+RUN apt-get install nano -y
+
+# Install Composer
+RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
+&& curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
+# Verify installer
+&& php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }" \
+&& php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer --snapshot \
+&& rm -f /tmp/composer-setup.*

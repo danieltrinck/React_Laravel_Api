@@ -1,0 +1,47 @@
+version: "3.8"
+services:
+  apache:
+    container_name: apache
+    build: ./apache
+    links:
+      - php
+    ports:
+      - "8000:80"
+    volumes:
+      - ./logs/apache:/var/log/apache2
+      - ./site/www:/usr/local/apache2/htdocs/www
+  php:
+    container_name: php
+    build: ./php
+    links:
+      - db
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./site/www:/usr/local/apache2/htdocs/www
+    working_dir: /usr/local/apache2/htdocs/www
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: ultralink
+      MYSQL_USER: ultra
+      MYSQL_PASSWORD: link
+      MYSQL_ROOT_PASSWORD: root 
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+  app:
+    container_name: react
+    image: react
+    build:
+      context: ./react
+      target: development
+    volumes:
+      - ./react:/app
+    ports:
+      - "80:3000"
+volumes:
+  db:
+    driver: local
