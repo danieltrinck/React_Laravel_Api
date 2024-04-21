@@ -7,7 +7,6 @@ COPY package.json .
 
 # Copy app files
 COPY . .
-# Expose port
 
 # Start the app
 CMD [ "yarn", "start" ]

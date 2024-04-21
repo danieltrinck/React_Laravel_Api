@@ -1,6 +1,4 @@
-## Instalação
-
-Para gerar a instalação
+## Carregando os containers
     - docker-compose build
     - docker-compose up -d
 
